@@ -23,13 +23,12 @@ spec:
         vault.hashicorp.com/agent-inject-secret-db-secrets.txt: "{{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }}"
         # Template de transformation du secret
         vault.hashicorp.com/agent-inject-template-db-secrets.txt: |
-          {{- with secret "{{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }} -}}
+          {{ `{{- with secret `}} {{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }} {{`-}}
           {
               postgres://{{ .Data.username }}:{{ .Data.password }}@postgres:5432/mydb?sslmode=disable
           }
-          {{- end }}
+          {{- end }} `}}
     spec:
-      serviceAccountName: {{ .Values.vault.serviceAccount }}
       containers:
         - name: app
           image: nginx:1-alpine-perl
