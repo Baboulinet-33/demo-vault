@@ -16,7 +16,10 @@ spec:
     spec:
       containers:
         - name: app
-          image: nginx:1-alpine-perl
+          image: busybox:stable
+          command:
+          - sleep
+          - "3600"
           resources:
             requests:
               memory: "128Mi"
