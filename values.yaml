@@ -1,4 +1,5 @@
 vaultAuthRef: vault-auth
 
-vaultSecretPath: "orgprch-projetdemo/db/"
+vaultSecretMount: orgprch-projetdemo
+vaultSecretPath: "db"
 
