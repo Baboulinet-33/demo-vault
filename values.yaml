@@ -3,3 +3,4 @@ vaultAuthRef: vault-auth
 vaultSecretMount: orgprch-projetdemo
 vaultSecretPath: "db"
 
+vaultRefreshAfter: 10s
