@@ -16,9 +16,9 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-status: "update"
-        vault.hashicorp.com/auth-type: "approle"  # ou "approle"
-        vault.hashicorp.com/auth-config: "{{ .Values.vaultAuthRef }}"
-        # vault.hashicorp.com/role: "app"
+        # vault.hashicorp.com/auth-type: "approle"  # ou "approle"
+        # vault.hashicorp.com/auth-config: "{{ .Values.vaultAuthRef }}"
+        vault.hashicorp.com/role: "approle"
         # Configuration du secret à récupérer
         vault.hashicorp.com/agent-inject-secret-db-secrets.txt: "{{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }}"
         # Template de transformation du secret
