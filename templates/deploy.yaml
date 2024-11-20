@@ -19,6 +19,7 @@ spec:
         # vault.hashicorp.com/auth-type: "approle"  # ou "approle"
         # vault.hashicorp.com/auth-config: "{{ .Values.vaultAuthRef }}"
         vault.hashicorp.com/role: "{{ .Values.vaultRole }}"
+        vault.hashicorp.com/agent-inject-secret-id: "{{ .Values.vaultRoleSecretName }}"  # Le Secret contenant le SecretID
         # Configuration du secret à récupérer
         vault.hashicorp.com/agent-inject-secret-db-secrets.txt: "{{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }}"
         # Template de transformation du secret

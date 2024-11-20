@@ -8,3 +8,4 @@ vaultRefreshAfter: 10s
 vaultSecretType: kv-v2
 
 vaultRole: "7b7d4671-93ae-2ddd-7fbb-8fffa8164d4a"
+vaultRoleSecretName: vso-approle
