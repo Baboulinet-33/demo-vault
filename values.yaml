@@ -1,0 +1,4 @@
+vaultAuthRef: vault-auth
+
+vaultSecretPath: "db/"
+
