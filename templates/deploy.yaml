@@ -13,22 +13,6 @@ spec:
     metadata:
       labels:
         app: nginx
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-inject-status: "update"
-        # vault.hashicorp.com/auth-type: "approle"  # ou "approle"
-        # vault.hashicorp.com/auth-config: "{{ .Values.vaultAuthRef }}"
-        vault.hashicorp.com/role: "{{ .Values.vaultRole }}"
-        vault.hashicorp.com/agent-inject-secret-id: "{{ .Values.vaultRoleSecretName }}"  # Le Secret contenant le SecretID
-        # Configuration du secret à récupérer
-        vault.hashicorp.com/agent-inject-secret-db-secrets.txt: "{{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }}"
-        # Template de transformation du secret
-        vault.hashicorp.com/agent-inject-template-db-secrets.txt: |
-          {{ `{{- with secret `}} {{ .Values.vaultSecretMount }}/{{ .Values.vaultSecretPath }} {{`-}}
-          {
-              postgres://{{ .Data.username }}:{{ .Data.password }}@postgres:5432/mydb?sslmode=disable
-          }
-          {{- end }} `}}
     spec:
       containers:
         - name: app
