@@ -2,7 +2,7 @@ vaultAuthRef: vault-auth
 
 vaultSecretMount: mi-demovault
 
-vaultSecretPath: "db"
+vaultSecretPath: "dev/db"
 
 vaultRefreshAfter: 10s
 

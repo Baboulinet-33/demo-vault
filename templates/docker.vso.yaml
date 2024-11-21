@@ -5,7 +5,7 @@ metadata:
 spec:
   vaultAuthRef: vault-auth
   mount: {{ .Values.vaultSecretMount }}
-  path: dockerconfig
+  path: dev/dockerconfig
   type: {{ .Values.vaultSecretType }}
   refreshAfter: {{ .Values.vaultRefreshAfter }}
   destination:
