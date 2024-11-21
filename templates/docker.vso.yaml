@@ -16,19 +16,14 @@ spec:
     transformation:
       excludeRaw: true
       excludes:
-      - .*
+        - .*
       templates: 
         ".dockerconfigjson":
           text: |
-            {{`{
-              {{- $username := get .Secret.username -}}
-              {{- $password := get .Secret.password -}}
-              "auths": {
-                "{{ .Secret.registry }}": {
-                  "username": "{{ $username }}",
-                  "password" "{{ $password }}",
-                  "auth": "{{ printf "%s:%s" $username $password | b64enc }}"
-                }
-              }
-            }`}}
-      
+            {{`
+              {{- $registry := get .Secret "registry" -}}
+              {{- $username := get .Secret "username" -}}
+              {{- $password := get .Secret "password" -}}
+              {{- $config := (list $username ":" $password | join "" | b64enc)  -}}
+              {{- dict "auths" (dict $registry $config) | mustToJson -}}
+            `}}
