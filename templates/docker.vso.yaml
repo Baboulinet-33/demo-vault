@@ -11,7 +11,7 @@ spec:
   destination:
     name: demo-pull-secret
     create: true
-    type: dockerconfigjson
+    type: kubernetes.io/dockerconfig
     dockerConfig:
       username: ${username}
       password: ${password}
