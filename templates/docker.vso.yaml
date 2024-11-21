@@ -14,13 +14,15 @@ spec:
     type: kubernetes.io/dockerconfigjson
     transformations:
     - type: template
-      template: |
-        {{`{
-          "auths": {
-            "{{ .Secret.registry }}": {
-              "username": ".Secret.username",
-              "password" ".Secret.password",
-              "auth": "{{ printf "%s:%s" .Secret.username .Secret.password | base64Encode }}"
-            }
-          }
-        }`}}
+      template: 
+        ".dockerconfigjson":
+          text: |
+            {{`{
+              "auths": {
+                "{{ .Secret.registry }}": {
+                  "username": ".Secret.username",
+                  "password" ".Secret.password",
+                  "auth": "{{ printf "%s:%s" .Secret.username .Secret.password | base64Encode }}"
+                }
+              }
+            }`}}
