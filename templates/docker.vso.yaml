@@ -17,8 +17,10 @@ spec:
       template: |
         {{`{
           "auths": {
-            "{{ .Data.data.registry }}": {
-              "auth": "{{ printf "%s:%s" .Data.data.username .Data.data.password | base64Encode }}"
+            "{{ .Secret.registry }}": {
+              "username": ".Secret.username",
+              "password" ".Secret.password",
+              "auth": "{{ printf "%s:%s" .Secret.username .Secret.password | base64Encode }}"
             }
           }
         }`}}
