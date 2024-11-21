@@ -1,18 +1,18 @@
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
 metadata:
-  name: db-secrets
+  name: docker-secret
 spec:
-  vaultAuthRef: {{ .Values.vaultAuthRef }}
+  vaultAuthRef: vault-auth
   mount: {{ .Values.vaultSecretMount }}
-  path: db
+  path: dockerconfig
   type: {{ .Values.vaultSecretType }}
   refreshAfter: {{ .Values.vaultRefreshAfter }}
   destination:
-    name: db-secrets
+    name: demo-pull-secret
     create: true
-    annotations:
-      ceciest: monannotation
-    labels:
-      ceciest: monlabel
-    type: Opaque
+    type: dockerconfigjson
+    dockerConfig:
+      username: ${username}
+      password: ${password}
+      registry: registry.example.com
