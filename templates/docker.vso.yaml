@@ -18,7 +18,7 @@ spec:
       excludes:
       - .*
       template: 
-        ".dockerconfigjson":
+        .dockerconfigjson:
           text: |
             {{`{
               "auths": {
