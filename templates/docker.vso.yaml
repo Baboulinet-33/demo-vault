@@ -17,7 +17,7 @@ spec:
       excludeRaw: true
       excludes:
       - .*
-      template: 
+      templates: 
         .dockerconfigjson:
           text: |
             {{`{
