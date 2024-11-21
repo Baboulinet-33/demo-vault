@@ -11,9 +11,9 @@ spec:
   destination:
     name: demo-pull-secret
     create: true
-    # type: kubernetes.io/dockerconfigjson
-    type: Opaque
-    transformations:
+    type: kubernetes.io/dockerconfigjson
+    # type: Opaque
+    transformation:
       excludeRaw: true
       excludes:
       - .*
@@ -21,11 +21,13 @@ spec:
         .dockerconfigjson:
           text: |
             {{`{
+              {{- $username := get .Secret.username -}}
+              {{- $password := get .Secret.password -}}
               "auths": {
                 "{{ .Secret.registry }}": {
-                  "username": ".Secret.username",
-                  "password" ".Secret.password",
-                  "auth": "{{ printf "%s:%s" .Secret.username .Secret.password | base64Encode }}"
+                  "username": "{{ $username }}",
+                  "password" "{{ $password }}",
+                  "auth": "{{ printf "%s:%s" $username $password | base64Encode }}"
                 }
               }
             }`}}
