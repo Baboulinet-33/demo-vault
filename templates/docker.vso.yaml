@@ -11,8 +11,14 @@ spec:
   destination:
     name: demo-pull-secret
     create: true
-    type: kubernetes.io/dockerconfig
-    dockerConfig:
-      username: ${username}
-      password: ${password}
-      registry: registry.example.com
+    type: kubernetes.io/dockerconfigjson
+    transformations:
+    - type: template
+      template: |
+        {{`{
+          "auths": {
+            "{{ .Data.data.registry }}": {
+              "auth": "{{ printf "%s:%s" .Data.data.username .Data.data.password | base64Encode }}"
+            }
+          }
+        }`}}
