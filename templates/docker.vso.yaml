@@ -11,7 +11,8 @@ spec:
   destination:
     name: demo-pull-secret
     create: true
-    type: kubernetes.io/dockerconfigjson
+    # type: kubernetes.io/dockerconfigjson
+    type: Opaque
     transformations:
       excludeRaw: true
       excludes:
