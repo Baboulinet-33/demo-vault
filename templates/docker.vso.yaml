@@ -27,7 +27,7 @@ spec:
                 "{{ .Secret.registry }}": {
                   "username": "{{ $username }}",
                   "password" "{{ $password }}",
-                  "auth": "{{ printf "%s:%s" $username $password | base64Encode }}"
+                  "auth": "{{ printf "%s:%s" $username $password | b64enc }}"
                 }
               }
             }`}}
