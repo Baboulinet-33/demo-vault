@@ -12,7 +12,6 @@ spec:
     name: demo-pull-secret
     create: true
     type: kubernetes.io/dockerconfigjson
-    # type: Opaque
     transformation:
       excludeRaw: true
       excludes:
@@ -25,5 +24,8 @@ spec:
               {{- $username := get .Secrets "username" -}}
               {{- $password := get .Secrets "password" -}}
               {{- $config := (list $username ":" $password | join "" | b64enc)  -}}
-              {{- dict "auths" (dict $registry $config) | mustToJson -}}
+              {{- dict "username" $username
+                        "password" $password
+                        "auths" (dict $registry $config) 
+                        | mustToJson -}}
             `}}
