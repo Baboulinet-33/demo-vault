@@ -21,9 +21,9 @@ spec:
         ".dockerconfigjson":
           text: |
             {{`
-              {{- $registry := get .Secret "registry" -}}
-              {{- $username := get .Secret "username" -}}
-              {{- $password := get .Secret "password" -}}
+              {{- $registry := get .Secrets "registry" -}}
+              {{- $username := get .Secrets "username" -}}
+              {{- $password := get .Secrets "password" -}}
               {{- $config := (list $username ":" $password | join "" | b64enc)  -}}
               {{- dict "auths" (dict $registry $config) | mustToJson -}}
             `}}
