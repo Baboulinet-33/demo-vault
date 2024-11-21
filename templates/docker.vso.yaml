@@ -13,7 +13,9 @@ spec:
     create: true
     type: kubernetes.io/dockerconfigjson
     transformations:
-    - type: template
+      excludeRaw: true
+      excludes:
+      - .*
       template: 
         ".dockerconfigjson":
           text: |
